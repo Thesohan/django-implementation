@@ -1,0 +1,75 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"
+	          name="viewport" content="width=device-width, initial-scale=1.0">  
+		
+		<title>Articles </title><link rel="stylesheet" href="{% static  'style.css'%}">
+	</head>
+	<body>
+		<header class="wrapper">
+			
+		</header>
+		
+			<nav>
+				<ul>
+				<h1><a href="{% url 'home' %}"><img src="{% static 'sohan.png' %}"></a></h1>
+				<h4> Hello there!<br> I Sohan Kathait,<br> heartly welcome you to my blog.<br>This is my first web development project and designed <br>using html, css, js. In this project django used as a backend.  </h4>
+			
+					{% if user.is_authenticated%}
+					<li>
+						<form class="logoutlink" action="{%url 'accounts:logout'%}" method="POST">
+							{%csrf_token%}
+							<button type="Submit" >Logout</button>
+						
+						</form>
+					</li>
+					<li> <a href="{% url 'articles:create'%}" class="highlight">New Article</a></li>
+					{% else %}
+					<li><a href="{% url 'accounts:login'%}" class="highlight">Login</a></li>
+					<li><a href="{% url 'accounts:signup'%}" class="highlight">Signup</a></li>
+					{% endif %}
+				</ul>
+			</nav>
+		
+			<div class="wrapper">
+				{% block content %}
+			{% endblock %}
+			
+			</div>
+			<footer>
+				<center><table>
+					<tr>
+						<td>
+							<a href="https://www.facebook.com/sohan.kathait">
+								<img src="{%static 'facebook.png' %}" alt="facebook link" style="width:42px;height:42px;border:0">
+							</a>
+						</td>
+					
+						<td>
+							<a href="https://www.facebook.com/sohan.kathait">
+								<img src="{%static 'hackerearth.png' %}" alt="facebook link" style="width:42px;height:42px;border:0">
+							</a>
+						</td>
+						<td>
+							<a href="https://www.facebook.com/sohan.kathait">
+								<img src="{%static 'twitter.jpeg' %}" alt="facebook link" style="width:42px;height:42px;border:0">
+							</a>
+						</td>
+						<td>
+							<a href="https://www.facebook.com/sohan.kathait">
+								<img src="{%static 'linkedin.png' %}" alt="facebook link" style="width:42px;height:42px;border:0">
+							</a>
+						</td>
+						<td>
+							<a href="https://www.facebook.com/sohan.kathait">
+								<img src="{%static 'internshal.jpeg' %}" alt="internshal link" style="width:42px;height:42px;border:0">
+							</a>
+						</td>
+						</tr>
+				</table>
+				</center>
+			</footer>
+	</body>
+</html>
